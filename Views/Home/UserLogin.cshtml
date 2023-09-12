@@ -1,0 +1,53 @@
+﻿@model WebApplication4.Models.UserLogin
+
+@{
+	ViewBag.Title = "UserLogin";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:white;">UserLogin</h2>
+<head>
+	<style>
+		body {
+			background-image: url(../../Content/pictures/create.jpeg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	@using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<h4>Login Into Your Account</h4>
+		<hr />
+		@Html.ValidationSummary("", new { @class = "text-danger" })
+		<div class="form-group">
+			@Html.LabelFor(m => m.UserEmail, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control" })
+				@Html.ValidationMessageFor(m => m.UserEmail, "", new { @class = "text-danger" })
+
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.UserPassword, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.PasswordFor(m => m.UserPassword, new { @class = "form-control" })
+				@Html.ValidationMessageFor(m => m.UserPassword, "", new { @class = "text-danger" })
+
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" class="btn btn-default" value="Login" />
+			</div>
+		</div>
+
+		@Html.ActionLink("New User Sign Up here", "UserSignUp")
+
+	}
+</body>

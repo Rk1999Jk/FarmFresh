@@ -1,0 +1,110 @@
+﻿@model WebApplication4.Models.FarmerDetails
+
+@{
+	ViewBag.Title = "Farmer's SignUp";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Farmer's Signup</h2>
+<head>
+	<style>
+		.split {
+			height: 100%;
+			width: 50%;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+
+		/* Control the left side */
+		.left {
+			left: 0;
+			background-color: black;
+		}
+
+		/* Control the right side */
+		.right {
+			right: 0;
+			background-color: black;
+		}
+
+		/* If you want the content centered horizontally and vertically */
+		.centered {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		body {
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<div class="split left">
+
+		<h2 style="position:relative;top:18px;">Create a New Account</h2>
+
+		@using (Html.BeginForm("FarmerSignUp", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+		{
+			@Html.AntiForgeryToken()
+			<hr />
+			@Html.ValidationSummary("", new { @class = "text-danger" })
+			<div class="form-group">
+				@Html.LabelFor(m => m.FarmersName, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.FarmersName, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.FarmersMobileNumber, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.FarmersMobileNumber, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.FarmersEmail, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.FarmersEmail, new { @class = "form-control" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(m => m.FPassword, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.PasswordFor(m => m.FPassword, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.FConfirmPassword, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.PasswordFor(m => m.FConfirmPassword, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.FarmsAddress, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.TextAreaFor(m => m.FarmsAddress, new { @class = "form-control" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" class="btn btn-default" value="Register" />
+				</div>
+			</div>
+		}
+	</div>
+	
+
+	<div class="split right">
+		<div class="centered">
+			<img src="~/Content/pictures/nandhu-kumar-5NGTf4oD8RA-unsplash.jpg" style="height:1000px; width:550px;" alt="Avatar man">
+
+		</div>
+	</div>
+</body>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WebApplication4.Models.ProductDetails>
+
+@{
+	ViewBag.Title = "ProductDetailsIndex";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProductDetailsIndex</h2>
+<head>
+	<style>
+		body {
+			color: white;
+			background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(../../Content/pictures/pexels-pixabay-247616.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.btn {
+			background-color: green;
+			border: none;
+			color: white;
+			padding: 12px 16px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+			/* Darker background on mouse-over */
+			.btn:hover {
+				background-color: darkgreen;
+			}
+	</style>
+</head>
+<div style="float:right; position:relative; bottom:50px; color:white">
+
+	<button class="btn" onclick="location.href='@Url.Action("EditFarmerDetails","Home")'"><i class="fa fa-bars"></i> Edit Personal Information</button>
+</div>
+<p>
+	@Html.ActionLink("Add Item", "ProductDetailsEntry")
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.ItemName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.QuantityInStock)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.RatePerKg)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.DateOfHarvest)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FreshRating)
+		</th>
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		if (item.PFarmerEmail == User.Identity.Name)
+		{
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.ItemName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.QuantityInStock)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.RatePerKg)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.DateOfHarvest)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.FreshRating)
+		</td>
+		
+
+		<td>
+			@Html.ActionLink("Edit", "ProductToBeEdited", new { id = item.ProductId }) |
+			
+			@Html.ActionLink("Delete", "ProductToBeDeleted", new { id = item.ProductId })
+		</td>
+	</tr>
+		}
+	}
+	</table>
+

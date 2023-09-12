@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebApplication4.Models.ProductDetails>
+
+@{
+	ViewBag.Title = "AvailableProducts";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AvailableProducts</h2>
+<table class="table">
+	<tr>
+		<th>
+			Product Category
+		</th>
+		<th>
+			Item Name
+		</th>
+		<th>
+			Quantity In Stock
+		</th>
+		<th>
+			Rate Per Kg
+		</th>
+		<th>
+			Date Of Harvest
+		</th>
+		<th>
+			Fresh Rating
+		</th>
+
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductCategory)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ItemName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.QuantityInStock)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.RatePerKg)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DateOfHarvest)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FreshRating)
+			</td>
+			<td>
+				@Html.ActionLink("Add To Cart", "Edit", new { id = item.ProductId }) |
+
+			</td>
+		</tr>
+	}
+
+</table>
+
+
+

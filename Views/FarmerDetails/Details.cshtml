@@ -1,0 +1,67 @@
+﻿@model WebApplication4.Models.FarmerDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FarmerDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FarmersName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FarmersName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FarmersMobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FarmersMobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FarmsAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FarmsAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FarmersEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FarmersEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FConfirmPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FConfirmPassword)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FarmerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

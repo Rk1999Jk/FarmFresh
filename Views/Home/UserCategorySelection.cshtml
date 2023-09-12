@@ -1,0 +1,145 @@
+﻿@using WebApplication4.Models
+
+@model WebApplication4.Models.UserCategoryViewModel
+
+@{
+				/**/
+
+				ViewBag.Title = "UserCategorySelection";
+				Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+	<style>
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.column {
+			float: left;
+			width: 33.33%;
+			padding: 5px;
+		}
+
+		
+		/* Clearfix (clear floats) */
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+		img {
+			border: 2px solid white;
+			width: 200px;
+			height: 200px;
+			border-radius: 90%;
+			transition: filter .5s ease-in-out;
+			-webkit-filter: grayscale(0%);
+			filter: grayscale(0%);
+		}
+			 img:hover {
+				-webkit-filter: grayscale(100%); 
+				filter: grayscale(100%);
+			}
+
+
+		.Rk {
+			position:relative;
+			left:45px;
+			
+			text-align:center;
+			
+		}
+		body {
+			color: white;
+			background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(../../Content/pictures/tim-mossholder-07uiqD9LS6U-unsplash.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.btn {
+			background-color: green;
+			border: none;
+			color: white;
+			padding: 12px 16px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+			/* Darker background on mouse-over */
+			.btn:hover {
+				background-color: darkgreen;
+			}
+		</style>
+</head>
+<body>
+	<h3 style="position:relative;">Choose Category To Continue Shopping</h3>
+	<div  style="float:right; position:relative; bottom:50px; color:white">
+		
+	<button class="btn" onclick="location.href='@Url.Action("EditUserDetails","Home")'"><i class="fa fa-bars"></i> Edit Personal Information</button>
+		</div>
+	<p style="position:relative;top:5px;">You Have Logged in with </p>
+	<p style="position:relative;top:5px;">@User.Identity.Name</p>
+	@using (Html.BeginForm("UserCategorySelection", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+		<div class="Rk">
+			<div class="row">
+				<div class="column">
+					<a href="/Home/AvailableVegetables">
+
+						<img src="~/Content/pictures/pexels-adonyi-gábor-1400171.jpg">
+						<p style="font-size:medium">Vegetables</p>
+					</a>
+				</div>
+				<div class="column">
+					<a href="/Home/AvailableFruits">
+
+						<img src="~/Content/pictures/pexels-engin-akyurt-1435735.jpg">
+						<p style="font-size:medium">Fruits</p>
+					</a>
+				</div>
+				<div class="column">
+					<a href="/Home/AvailableHerbs">
+
+						<img src="~/Content/pictures/pexels-rama-khandkar-2272847.jpg">
+						<p style="font-size:medium">Herbs</p>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column">
+					<a href="/Home/AvailableGrains">
+
+						<img src="~/Content/pictures/pexels-pixabay-41959.jpg">
+						<p style="font-size:medium">Grains</p>
+					</a>
+				</div>
+				<div class="column">
+					<a href="/Home/AvailableGreens">
+
+						<img src="~/Content/pictures/pexels-pixabay-60560.jpg">
+						<p style="font-size:medium">Greens</p>
+					</a>
+				</div>
+				<div class="column">
+					<a href="/Home/AvailableHoney">
+
+						<img src="~/Content/pictures/pexels-valeria-boltneva-1872904.jpg">
+						<p style="font-size:medium">Honey</p>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+	}
+
+</body>

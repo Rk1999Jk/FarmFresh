@@ -1,0 +1,97 @@
+﻿@model IEnumerable<WebApplication4.Models.UserCart>
+@using WebApplication4.Models
+@{
+	ViewBag.Title = "BillDetails";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bill Details</h2>
+<h2>User Cart Index</h2>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.ProductId)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ItemName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Quantity)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.RatePerKg)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Amount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FarmerEmail)
+		</th>
+		<th></th>
+	</tr>
+	@{
+		double billAmount = 0;
+	}
+	@foreach (var item in Model)
+	{
+		FarmContext db = new FarmContext();
+		var userDetails = db.UserDetails.Where(x => x.Email == User.Identity.Name).First();
+		if (item.UserId == userDetails.UserId)
+		{
+			billAmount = billAmount + item.Amount;
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductId)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ItemName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Quantity)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.RatePerKg)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Amount)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FarmerEmail)
+			</td>
+
+
+
+		</tr>
+		}
+	}
+</table>
+
+@using (Html.BeginForm("BillDetails", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+	if (billAmount != 0)
+	{
+		<p>Bill Amount:</p>@billAmount<br />
+
+		@Html.AntiForgeryToken()
+		@Html.ActionLink("Back To Cart", "UserCartIndexAfter")
+
+
+
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				@Html.ActionLink("Pay Now", "PaymentMethod")
+			</div>
+		</div>
+
+	}
+	else
+	{
+		<p>Your Cart is Empty Add Items first</p>
+		@Html.AntiForgeryToken()
+		@Html.ActionLink("Back To Cart", "UserCartIndexAfter")
+
+	}
+
+}

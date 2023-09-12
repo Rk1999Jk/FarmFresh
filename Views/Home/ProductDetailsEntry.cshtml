@@ -1,0 +1,84 @@
+﻿@using WebApplication4.Models
+@model WebApplication4.Models.ProductDetails
+	
+
+@{
+	ViewBag.Title = "ProductDetailsEntry";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>ProductDetailsEntry</h2>
+
+<html>
+<head>
+	<style>
+		body {
+			color: white;
+			background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../Content/pictures/peter-wendt--r5KSMkyoSc-unsplash.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+	</style>
+</head>
+<body>
+	<p>You Have Logged in with</p>@User.Identity.Name
+	@using (Html.BeginForm("ProductDetailsEntry", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary("", new { @class = "text-danger" })
+		<div class="form-group">
+			@Html.LabelFor(m => m.ProductCategory, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10" style="color:black;">
+
+				@Html.DropDownListFor(m => m.ProductCategory,
+					 new SelectList(Enum.GetValues(typeof(Category))),
+					 "Select Category",new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.ItemName, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.ItemName, new { @class = "form-control" })
+				@Html.ValidationMessageFor(m => m.ItemName, "", new { @class = "text-danger" })
+
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.QuantityInStock, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.QuantityInStock, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(m => m.QuantityInStock, "", new { @class = "text-danger" })
+
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.RatePerKg, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.RatePerKg, new { @class = "form-control" })
+				@Html.ValidationMessageFor(m => m.RatePerKg, "", new { @class = "text-danger" })
+
+			</div>
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.DateOfHarvest, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.DateOfHarvest, new { @class = "form-control", Type = "date" })
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" class="btn btn-default" value="Add Product" />
+			</div>
+		</div>
+		<mark style="background-color:black;">
+			@Html.ActionLink("Back To Index ", "ProductDetailsIndex")
+
+		</mark>
+
+		
+
+	}
+</body>
+</html>
+
+

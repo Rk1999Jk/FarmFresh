@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication4.Models.UserCart>
+@using WebApplication4.Models
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.ProductId)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ItemName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Quantity)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.RatePerKg)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Amount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.FarmerEmail)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		FarmContext db = new FarmContext();
+		var userDetails = db.UserDetails.Where(x => x.Email == User.Identity.Name).First();
+		if (item.UserId == userDetails.UserId)
+		{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductId)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ItemName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Quantity)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.RatePerKg)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Amount)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FarmerEmail)
+			</td>
+
+		</tr>
+		@Html.ActionLink("Continue Shopping", "UserCartIndex", new { controller = "Home", id = item.CartId });
+		}
+	}
+
+</table>
+
+

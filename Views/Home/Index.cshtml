@@ -1,0 +1,106 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Oleo Script Swash Caps' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
+	<style type="text/css">
+		body {
+			color: white;
+			background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../Content/pictures/wilsan-u-BCATbA86WAw-unsplash.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			font-family: 'Anton';
+		}
+
+		.tagline {
+			text-align: center;
+			position: relative;
+			top: 32px;
+			font-size: 80px;
+		}
+
+		.firstline {
+			text-align: left;
+			font-size: 30px;
+			position: relative;
+			top: 200px;
+			font-family: 'Oleo Script Swash Caps';
+		}
+
+		.secondline {
+			text-align: left;
+			font-size: 30px;
+			position: relative;
+			top: 210px;
+			left: 32px;
+			font-family: 'Oleo Script Swash Caps';
+		}
+
+		.thirdline {
+			text-align: left;
+			font-size: 30px;
+			position: relative;
+			top: 220px;
+			left: 64px;
+			font-family: 'Oleo Script Swash Caps';
+		}
+		.button {
+			display: inline-block;
+			border-radius: 4px;
+			background-color: forestgreen;
+			border: none;
+			color: #FFFFFF;
+			text-align: center;
+			padding: 5px;
+			width: 200px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+			font-size:30px;
+			position:relative;
+			left:500px;
+			top:220px;
+			
+		}
+
+			.button span {
+				cursor: pointer;
+				display: inline-block;
+				position: relative;
+				transition: 0.5s;
+				font-size:30px;
+			}
+
+				.button span:after {
+					content: '\00bb';
+					position: absolute;
+					opacity: 0;
+					top: 0;
+					right: -20px;
+					transition: 0.5s;
+				}
+
+			.button:hover span {
+				padding-right: 25px;
+			}
+
+				.button:hover span:after {
+					opacity: 1;
+					right: 0;
+				}
+	</style>
+</head>
+<body>
+	<p class="tagline">Reap Fresh Eat Fresh!!</p>
+	<p class="firstline">Moving the world,</p>
+	<p class="secondline">into Nature's Lap</p>
+	<p class="thirdline">from the Miracles of Agriculture</p>
+	<button class="button" style="vertical-align:middle" onclick="location.href='@Url.Action("FarmerLogin","Home")'"><span style="font-size:20px;">I'm the provider </span></button>
+	<button class="button" style="vertical-align:middle" onclick="location.href='@Url.Action("UserLogin","Home")'"><span style="font-size:20px;">I'm the buyer </span></button>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿@model List<WebApplication4.Models.ProductDetailsDTO>
+
+
+@{
+	ViewBag.Title = "AvailableProducts";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Available Fruits</h2>
+<head>
+	<style>
+		body {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(../../Content/pictures/pexels-erik-scheel-95425.jpg);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			color: white;
+		}
+	</style>
+</head>
+<table class="table">
+	<tr>
+		<th>
+			Product ID
+		</th>
+		<th>
+			Product Category
+		</th>
+		<th>
+			Item Name
+		</th>
+		<th>
+			Quantity In Stock
+		</th>
+		<th>
+			Rate Per Kg
+		</th>
+		<th>
+			Date Of Harvest
+		</th>
+		<th>
+			Fresh Rating
+		</th>
+
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		float freshRating = 5.0F;
+
+
+		float subtractionValue;
+		DateTime today = DateTime.Today;
+		int differenceInDates = (today - item.DateOfHarvest).Days;
+		subtractionValue = differenceInDates * 1.25F;
+		freshRating = freshRating - subtractionValue;
+
+		if (freshRating > 0)
+		{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductId)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProductCategory)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ItemName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.QuantityInStock)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.RatePerKg)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.DateOfHarvest)
+			</td>
+			<td>
+				@freshRating
+			</td>
+			<td>
+				@Html.ActionLink("Add To Cart", "UserCartIndex", new { id = item.ProductId }) |
+
+			</td>
+		</tr>
+		}
+	}
+
+</table>
+@Html.ActionLink("View Cart", "UserCartIndexAfter")<br />
+@Html.ActionLink("Back To Search", "UserCategorySelection")
+
+
+
+
+

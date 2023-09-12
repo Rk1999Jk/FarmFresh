@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication4.Models.FarmerDetails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FarmersName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FarmersMobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FarmsAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FarmersEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FConfirmPassword)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FarmersName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FarmersMobileNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FarmsAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FarmersEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FConfirmPassword)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FarmerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FarmerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FarmerId })
+        </td>
+    </tr>
+}
+
+</table>
